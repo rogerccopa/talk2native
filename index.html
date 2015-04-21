@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name='keywords' content='WebRTC, HTML5, JavaScript' />
+<meta name='description' content='WebRTC Reference App' />
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1'>
+<style>
+  #videos {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+  }
+  video{
+    border: 4px solid black;
+  }
+  #localVideo {
+    position: absolute;
+    right: 4px;
+    bottom: 8px;
+    width: 175px;
+  }
+</style>
+
+<base target='_blank'>
+
+<title>WebRTC client</title>
+
+<!-- <link rel='stylesheet' href='css/main.css' /> -->
+<script>
+// If the URL is empty, redirect the page to 'prompt.html'
+  if (location.pathname.substring(1) === '') {
+    window.location.replace('prompt.html');
+  }
+</script>
+
+</head>
+
+<body>
+
+<div id='container'>
+  <div>
+    <button id='back'><< Back to user list</button>
+    <p id='connection-status'>Waiting to be connected by another user...</p>
+  </div>
+  <p id='local-user'></p>
+  <div id='videos'>
+    <video id='localVideo' autoplay muted></video>
+    <video id='remoteVideo' autoplay></video>
+  </div>
+
+</div>
+
+<script src='/socket.io/socket.io.js'></script>
+<script src='js/lib/jquery-2.1.1.min.js'></script>
+<script src='js/lib/adapter.js'></script>
+<script src='js/video.js'></script>
+
+</body>
+</html>

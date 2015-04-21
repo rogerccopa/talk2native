@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name='keywords' content='WebRTC, HTML5, JavaScript' />
+  <meta name='description' content='WebRTC Reference App' />
+  <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1'>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <style type="text/css">
+    .ui-dialog-titlebar-close { visibility: hidden; }
+  </style>
+  <style type="text/css">
+    table { border-collapse: collapse; }
+    td, th { border: 1px solid silver; padding-left: 10px; padding-right: 10px; }
+    th {background-color: #FFFFCC;}
+  </style>
+  <base target='_blank'>
+  <title>WebRTC client</title>
+</head>
+<body>
+  <div align="center"><b>Users who want to talk right now.</b></div><br/>
+  <div id='container' align="center">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Native Language</th>
+          <th>Wants to Practice</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="users"></tbody>
+      <tfoot id="me"></tfoot>
+    </table>
+  </div>
+  <br/>
+  <div align="center">You can wait while more users join the list.</div>
+
+  <script src='/socket.io/socket.io.js'></script>
+  <script src='js/lib/jquery-2.1.1.min.js'></script>
+  <script src='js/lib/jquery-ui.min.js'></script>
+  <script src='js/main.js'></script>
+</body>
+</html>
