@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1'>
+  <style>
+  #videos {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+  }
+  video{
+    border: 1px solid white;
+  }
+  #localVideo {
+    position: absolute;
+    right: 4px;
+    bottom: 8px;
+    width: 175px;
+  }
+  #remoteVideo {
+    width: 700px;
+  }
+</style>
+<title>Natives Live Chat</title>
+</head>
+<body>
+<div id='container'>
+  <table border="0" width="90%">
+  <tr>
+    <td>
+      <div>
+        <button id='back'><< Back to user list</button>
+        <p id='connection-status'>Waiting to be connected by another user...</p>
+      </div>
+      <p id='local-user' style="display:none;"></p>
+    </td>
+    <td>
+      <span id="allowMsg" style="background-color:yellow; padding:10px;">Please, click allow to share your camera and microphone.</span>
+    </td>
+  </tr>
+  </table>
+  <script> setTimeout(function(){document.getElementById('allowMsg').style.display='none';},6000); </script>
+  <div id='videos'>
+    <video id='localVideo' autoplay muted></video>
+    <video id='remoteVideo' autoplay></video>
+  </div>
+</div>
+
+<script src='/socket.io/socket.io.js'></script>
+<script src='js/lib/jquery-2.1.1.min.js'></script>
+<script src='js/lib/adapter.js'></script>
+<script src='js/video.js'></script>
+
+</body>
+</html>

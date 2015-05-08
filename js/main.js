@@ -87,7 +87,7 @@ function popup(username) {
 socket.on('request', function(sender, receiver) {
   //if (receiver === my_name) {
   if (receiver === me.fullname) {
-    $('html').append('<div id="dialog-confirm-' + sender + '" title="Accept Call?">' + sender + ' is video calling, Accept?');
+    $('html').append('<div id="dialog-confirm-' + sender + '" title="Accept Call?">' + sender.split('_')[0] + ' is video calling, Accept?');
     if($('audio').length == 0) {
       $('html').append('<audio autoplay loop><source src="apple.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio>');
     }
@@ -117,7 +117,7 @@ socket.on('cancel request', function(sender, receiver) {
   if (receiver === me.fullname) {
     $("#dialog-confirm").dialog("close");
     $("#dialog-confirm").remove();
-    $('html').append('<div id="dialog-call-cancelled" title="Call Cancelled">' + sender + ' cancelled the call.');
+    $('html').append('<div id="dialog-call-cancelled" title="Call Cancelled">' + sender.split('_')[0] + ' cancelled the call.');
     $("#dialog-call-cancelled").dialog({
       modal: true,
       buttons: {
@@ -158,7 +158,7 @@ socket.on('reject request', function(sender, receiver) {
     $("#dialog-message").dialog("close");
     $("#dialog-message").remove();
     // alert(sender + ' rejected your request');
-    $('html').append('<div id="dialog-reject" title="Call Rejected">' + sender + ' rejected your call.');
+    $('html').append('<div id="dialog-reject" title="Call Rejected">' + sender.split('_')[0] + ' rejected your call.');
     $( "#dialog-reject" ).dialog({
       modal: true,
       buttons: {
@@ -205,8 +205,6 @@ function parseUser(fullUsername) {
   // fullUsername format: Roger_1_2-3
   var userSplit = fullUsername.split('_');
   var langs = ["English","Spanish","French","Portuguese","German","Italian","Japanese","Chinese"];
-
-  // CONTINUE HERE... replace lang1, lang2 with the language name
 
   return {'name':userSplit[0], 
           'lang1':langs[userSplit[1]], 

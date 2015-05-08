@@ -1,13 +1,17 @@
 var static = require('node-static');
 var http = require('http');
+
+var webRequest = require("request");
+var os = require("os");
+
 var file = new(static.Server)();
 var app = http.createServer(function (req, res) {
   file.serve(req, res, function (err, result) {
     if (err) {
       if(req.url.substr(0, 6) === '/user=') {
-	file.serveFile('/users.html', 200, {}, req, res);
+	       file.serveFile('/users.html', 200, {}, req, res);
       } else {
-	file.serveFile('/index.html', 200, {}, req, res);
+	       file.serveFile('/video.html', 200, {}, req, res);
       }
     }
   });
@@ -127,6 +131,21 @@ io.sockets.on('connection', function (socket){
     delete clients[username];
     socket.broadcast.to('').emit('left video page', username);
     socket.broadcast.to(room).emit('left room', username);
+  });
+
+  socket.on('suggestionReceived', function(msg){
+    webRequest( {
+                  uri: "http://" + os.hostname() + "/email.php",
+                  method: "POST",
+                  form: {message: msg}
+                },
+                function(error, response, body) {
+                  if (body == 'Sent') {
+                    console.log("User suggestion was received.")
+                  } else {
+                    console.log("User suggestion was NOT received. " + body);
+                  }
+              });
   });
 });
 

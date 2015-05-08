@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name='keywords' content='WebRTC, HTML5, JavaScript' />
-  <meta name='description' content='WebRTC Reference App' />
-  <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1'>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <style type="text/css">
     .ui-dialog-titlebar-close { visibility: hidden; }
@@ -11,33 +8,53 @@
   <style type="text/css">
     table { border-collapse: collapse; }
     td, th { border: 1px solid silver; padding-left: 10px; padding-right: 10px; }
-    th {background-color: #FFFFCC;}
+    th {background-color: #EFEFEF;}
+    #sidebar {
+      float: left;
+      width: 200px;
+    }
   </style>
-  <base target='_blank'>
-  <title>WebRTC client</title>
+  <title>Natives Live Chat - Users</title>
 </head>
 <body>
-  <div align="center"><b>Users who want to talk right now.</b></div><br/>
-  <div id='container' align="center">
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Native Language</th>
-          <th>Wants to Practice</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody id="users"></tbody>
-      <tfoot id="me"></tfoot>
-    </table>
+<div id="framework">
+  <div id="sidebar">
+    Have a suggestion?<br/>Please, leave us a message:<br/>
+    <textarea id="txtSuggest" rows="4" cols="25"></textarea>
+    <input type="button" id="btnSuggest" value="Send">
   </div>
-  <br/>
-  <div align="center">You can wait while more users join the list.</div>
-
+  <div id="content" align="center">
+    <div style="font-size:large;"><b>Users who want to talk right now:</b></div><br/>
+    <div id='container'>
+      <table id="tblUsers">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Native Language</th>
+            <th>Wants to Practice</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="users"></tbody>
+        <tfoot id="me"></tfoot>
+      </table>
+    </div>
+    <br/>
+    You can wait while more users join the list.
+  </div>
+</div>
   <script src='/socket.io/socket.io.js'></script>
   <script src='js/lib/jquery-2.1.1.min.js'></script>
   <script src='js/lib/jquery-ui.min.js'></script>
   <script src='js/main.js'></script>
+  <script>
+  $("#btnSuggest").click(function(){
+    if ($("#txtSuggest").val().length == 0) { return; }
+      var visitorUid = location.pathname.substring(location.pathname.lastIndexOf('-')+1);
+      socket.emit('suggestionReceived', $("#txtSuggest").val() + "\t" + visitorUid);
+      $("#txtSuggest").val("");
+      alert("Your message has been received. Thank You.");
+  });
+  </script>
 </body>
 </html>

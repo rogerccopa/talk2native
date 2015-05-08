@@ -61,14 +61,14 @@ socket.on('full', function (room){
 socket.on('join', function (room, username){
   console.log(username + ' made a request to join room ' + room);
   console.log('I am the initiator of room ' + room + '!');
-  $('#connection-status').text('Connected with ' + username);
+  $('#connection-status').text('Connected with: ' + username.split('_')[0]);
   isChannelReady = true;
 });
 
 socket.on('joined', function (room){
   console.log('This peer has joined room ' + room);
   var room_owner = room;
-  $('#connection-status').text('Connected with ' + room_owner);
+  $('#connection-status').text('Connected with: ' + room_owner.split('_')[0]);
   isChannelReady = true;
 });
 
