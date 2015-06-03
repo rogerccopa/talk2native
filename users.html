@@ -9,19 +9,34 @@
     table { border-collapse: collapse; }
     td, th { border: 1px solid silver; padding-left: 10px; padding-right: 10px; }
     th {background-color: #EFEFEF;}
-    #sidebar {
+    #sidebarLeft {
       float: left;
-      width: 200px;
+      width: 300px;
     }
   </style>
+  <script>
+  function goHome() {
+    window.location.href = 'http://' + window.location.hostname + '/index.html';
+  }
+  </script>
   <title>Natives Live Chat - Users</title>
 </head>
 <body>
 <div id="framework">
-  <div id="sidebar">
+  <div id="sidebarLeft" align="center">
+    <a href="javascript:goHome();" style="text-decoration: none;">&laquo; Return to Home Page</a><br/><br/>
     Have a suggestion?<br/>Please, leave us a message:<br/>
-    <textarea id="txtSuggest" rows="4" cols="25"></textarea>
-    <input type="button" id="btnSuggest" value="Send">
+    <textarea id="txtSuggest" rows="4" cols="25"></textarea><br/>
+    <input type="button" id="btnSuggest" value="Send"><br/><br/>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- AdVerticalBar -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:300px;height:600px"
+         data-ad-client="ca-pub-7504801450430585"
+         data-ad-slot="2407461722"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
   <div id="content" align="center">
     <div style="font-size:large;"><b>Users who want to talk right now:</b></div><br/>
@@ -32,7 +47,7 @@
             <th>Name</th>
             <th>Native Language</th>
             <th>Wants to Practice</th>
-            <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody id="users"></tbody>
@@ -40,7 +55,7 @@
       </table>
     </div>
     <br/>
-    You can wait while more users join the list.
+    You can wait (keep this page open) while more users join the list.
   </div>
 </div>
   <script src='/socket.io/socket.io.js'></script>
@@ -55,6 +70,17 @@
       $("#txtSuggest").val("");
       alert("Your message has been received. Thank You.");
   });
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-63340238-1', 'auto');
+    ga('send', 'pageview');
+
   </script>
 </body>
 </html>

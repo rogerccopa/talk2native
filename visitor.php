@@ -10,8 +10,9 @@ $userIp = $_SERVER['REMOTE_ADDR'];
 $userUid = 0;
 $userName = str_replace(' ', '', ucwords($_POST["name"]));
 
-$sql = "INSERT INTO visitors(ip, name, lang1, lang2) 
-		VALUES('" . $userIp . "','" . $userName . "'," . $_POST["lang1"] . "," . $_POST["lang2"] . ")";
+$sql = "INSERT INTO visitors(ip, name, lang1, lang2, referrer, useragent) 
+		VALUES('" . $userIp . "','" . $userName . "'," . $_POST["lang1"] . "," . $_POST["lang2"] . ",'" . 
+				$_SERVER['HTTP_REFERER'] . "','" . str_replace("'", "''", $_SERVER['HTTP_USER_AGENT']) . "')";
 
 if ($dbConn->query($sql) === TRUE) {
 	$userUid = $dbConn->insert_id;

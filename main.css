@@ -1,2 +1,8 @@
 div, table { font-size:large;}
 span {font-size:medium;}
+
+/* if user device is a mobile phone */
+@media only screen and (max-device-width: 480px) {
+	div, table { font-size:medium;}
+	span {font-size:small;}	
+}
